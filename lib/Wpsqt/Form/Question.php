@@ -3,20 +3,20 @@ require_once WPSQT_DIR.'lib/Wpsqt/Form.php';
 
 
 /**
- * The form for adding new questions, should be usable 
+ * The form for adding new questions, should be usable
  * by both quiz and surveys.
- * 
+ *
  * @author Iain Cambridge
  * @copyright Fubra Limited 2010-2011, all rights reserved.
- * @license http://www.gnu.org/licenses/gpl.html GPL v3 
+ * @license http://www.gnu.org/licenses/gpl.html GPL v3
  * @package WPSQT
  */
 
 class Wpsqt_Form_Question extends Wpsqt_Form {
-	
+
 	/**
 	 * Builds the question form.
-	 * 
+	 *
 	 * @param array $questionTypes The array of question types, should have the name of the type as the key and the description of the question type as the value.
 	 * @param array $sections The array of sections. Values as the values for this one.
 	 * @param array $options The array of values for the fields in the form. If it's empty we'll build a basic one to avoid undefined indexes all over the place.
@@ -36,13 +36,16 @@ class Wpsqt_Form_Question extends Wpsqt_Form {
 					 		 'image' => false,
 					 		 'likertscale' => false,
 					 		 'likertmatrixscale' => false,
-					 		 'likertmatrixcustom' => false);
+					 		 'likertmatrixcustom' => false,
+							 'otherfield' => false,
+							 'othertext' => false);
+
 		}
 		$typeHelpText = "";
 		foreach ( $questionTypes as $type => $text ){
 			$typeHelpText .= "<strong>".$type."</strong> ".$text."<br />";
 		}
-		
+
 		$this->addOption("wpsqt_name", "Question", "textarea", $options['question'], "The text for the question (the actual question)." )
 			 ->addOption("wpsqt_type", "Type", "select", $options['type'], $typeHelpText, array_keys($questionTypes) )
 			 ->addOption("wpsqt_randomize_answers", "Randomize answers", "yesno", $options['randomize_answers'], "Sort the answers of this question randomly.")
@@ -56,11 +59,13 @@ class Wpsqt_Form_Question extends Wpsqt_Form {
 			 ->addOption("wpsqt_explanation", "Answer Explanation", "textarea", $options['explanation'], "What shall be shown when 'show answer' is pressed. <b>Leave blank for no answer explanation to be available.</b>\nWill also display on quiz review page.", array(), false)
 			 ->addOption("wpsqt_explanation_onlyatfinish", "Answer Explanation only at finish", "yesno", $options['explanation_onlyatfinish'], "Only show the explanation of an answer after the quiz is taken and &quot;Finish Display&quot; is set to &quot;Review&quot; .", array(), false)
 			 ->addOption("wpsqt_add_text", "Additional Text", "textarea", $options['add_text'], "Additional text/html for questions, good for using html to display images.",array(),false)
-			 ->addOption("wpsqt_image", "Image", "image", $options['image'], "The image that is to be associated with the question.", array(),  false );
-			
+			 ->addOption("wpsqt_image", "Image", "image", $options['image'], "The image that is to be associated with the question.", array(),  false )
+			 ->addOption("wpsqt_other_field", "'Other' free text area", "yesno", $options['other_field'], "Add an 'other' free text area under the multiple choice answers",array(),false)
+			 ->addOption("wpsqt_other_text", "'Other' free text area label", "textarea", $options['other_text'], "Label for 'other' field",array(),false);
+
 		$this->options = $options;
 		apply_filters("wpsqt_form_question", $this);
-		
+
 	}
-	
+
 }
