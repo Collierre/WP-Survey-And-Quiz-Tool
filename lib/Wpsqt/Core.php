@@ -177,7 +177,7 @@ class Wpsqt_Core {
 	}
 
 	/**
-	 * Gets the number of page based eon the number
+	 * Gets the number of page based on the number
 	 * of items there are and the number of items
 	 * per page.
 	 *

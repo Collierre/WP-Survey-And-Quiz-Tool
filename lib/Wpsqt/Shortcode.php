@@ -363,7 +363,6 @@ class Wpsqt_Shortcode {
 			}
 
 			if ( isset($_POST['answers']) ){
-
 				foreach ( $_POST['answers'] as $questionKey => $givenAnswers ){
 					$answerMarked = array();
 					$questionData =  (isset($_SESSION["wpsqt"][$quizName]["sections"][$pastSectionKey]["questions"][$questionKey])) ? $_SESSION["wpsqt"][$quizName]["sections"][$pastSectionKey]["questions"][$questionKey] : array();
@@ -422,8 +421,12 @@ class Wpsqt_Shortcode {
 				}// END foreach answer
 				$_SESSION["wpsqt"][$quizName]["sections"][$pastSectionKey]["stats"] = array("correct" => $correct, "incorrect" => $incorrect);
 				$_SESSION["wpsqt"][$quizName]["sections"][$pastSectionKey]["can_automark"] = $canAutoMark;
+				
 			}// END if isset($_POST['answers'])
-
+			
+			if(isset($_POST['comment'])) {
+			    $_SESSION["wpsqt"][$quizName]["sections"][$pastSectionKey]["comment"] = $_POST['comment'];
+            }
 		}
 
 		if ( isset($requiredQuestions) && $requiredQuestions['exist'] > sizeof($requiredQuestions['given']) && !$this->_restore ){
@@ -636,6 +639,7 @@ class Wpsqt_Shortcode {
 			}
 		}
 
+
 		if ( !isset($_SESSION['wpsqt'][$quizName]['details']['store_results']) ||  $_SESSION['wpsqt'][$quizName]['details']['store_results'] !== "no" ){
 			$wpdb->query(
 				$wpdb->prepare("INSERT INTO `".WPSQT_TABLE_RESULTS."` (datetaken,timetaken,person,sections,item_id,person_name,ipaddress,score,total,percentage,status,pass)
@@ -714,7 +718,8 @@ class Wpsqt_Shortcode {
 		$surveyResults = $wpdb->get_row(
 							$wpdb->prepare("SELECT * FROM `".WPSQT_TABLE_SURVEY_CACHE."` WHERE item_id = %d",
 											array($_SESSION['wpsqt'][$quizName]['details']['id']) ),ARRAY_A
-									);
+									);													
+									
 		if ( !empty($surveyResults) ){
 			$cachedSections = unserialize($surveyResults['sections']);
 		} else {

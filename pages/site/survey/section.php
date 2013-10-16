@@ -49,11 +49,6 @@ foreach ($_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["questions"] as 
 			<?php } ?>
 
 		<?php require Wpsqt_Question::getDisplayView($question); ?>
-		<?php
-		if($question["other_field"] == "yes") {
-			echo $question["other_text"]; ?>
-			<textarea name="<?php echo $questionId; ?>other-text"></textarea>
-		<?php } ?>
 	</div>
 <?php } ?>
 

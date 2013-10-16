@@ -48,7 +48,6 @@
 					|| ucfirst($questionArray['type']) == 'Single' 
 					|| ucfirst($questionArray['type']) == "Multiple Choice" 
 					|| ucfirst($questionArray['type']) == "Dropdown" ){
-					
 				?>				
 				<b><u>Answers</u></b>
 				<p class="answer_given">
@@ -77,7 +76,12 @@
 				?>				
 				<b><u>Answer Given</u></b>
 				<p class="answer_given" style="background-color : #c0c0c0; border : 1px dashed black; padding : 5px;overflow:auto;height : 200px;"><?php if ( isset($section['answers'][$questionId]['given']) && is_array($section['answers'][$questionId]['given']) ){ echo nl2br(esc_html(stripslashes(current($section['answers'][$questionId]['given'])))); } ?></p>
-			<?php } ?>
+			<?php }
+			if($section['comment']) { ?>
+                <ul style="margin-left:0.9em;">
+                    <li style="list-style-type:none"><span style="font-style:italic;">Comment:</span> <?php echo $section['comment'][0][0]; ?></li>
+                </ul>
+            <?php } ?>
 		<?php } ?>
 	<?php } ?>
 

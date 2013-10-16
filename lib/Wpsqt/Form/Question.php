@@ -38,7 +38,8 @@ class Wpsqt_Form_Question extends Wpsqt_Form {
 					 		 'likertmatrixscale' => false,
 					 		 'likertmatrixcustom' => false,
 							 'otherfield' => false,
-							 'othertext' => false);
+							 'othertext' => false,
+							 'include_other' => false);
 
 		}
 		$typeHelpText = "";
@@ -60,8 +61,8 @@ class Wpsqt_Form_Question extends Wpsqt_Form {
 			 ->addOption("wpsqt_explanation_onlyatfinish", "Answer Explanation only at finish", "yesno", $options['explanation_onlyatfinish'], "Only show the explanation of an answer after the quiz is taken and &quot;Finish Display&quot; is set to &quot;Review&quot; .", array(), false)
 			 ->addOption("wpsqt_add_text", "Additional Text", "textarea", $options['add_text'], "Additional text/html for questions, good for using html to display images.",array(),false)
 			 ->addOption("wpsqt_image", "Image", "image", $options['image'], "The image that is to be associated with the question.", array(),  false )
-			 ->addOption("wpsqt_other_field", "'Other' free text area", "yesno", $options['other_field'], "Add an 'other' free text area under the multiple choice answers",array(),false)
-			 ->addOption("wpsqt_other_text", "'Other' free text area label", "textarea", $options['other_text'], "Label for 'other' field",array(),false);
+			 ->addOption("wpsqt_comment_field", "'Comment' free text area", "yesno", $options['comment_field'], "Add a 'comment' free text area under the multiple choice answers",array(),false)
+			 ->addOption("wpsqt_comment_label", "'Comment' free text area label", "text", $options['comment_label'], "Label for 'comment' field",array(),false);
 
 		$this->options = $options;
 		apply_filters("wpsqt_form_question", $this);
