@@ -24,8 +24,7 @@ $objTokens->setDefaultValues();
 	require_once(WPSQT_DIR.'pages/admin/surveys/result.total.script.site.php');
 } 
 else if ($_SESSION['wpsqt'][$quizName]['details']['finish_display'] == 'User answers') {
-    //var_dump($_SESSION['wpsqt'][$quizName]);
-    //var_dump($_SESSION['sections']);
+    echo '<p>'; _e('Thank you for completing the survey.', 'wp-survey-and-quiz-tool'); echo '</p>';
 	$sections = $_SESSION['wpsqt'][$quizName]['sections'];
 	require_once(WPSQT_DIR.'pages/admin/surveys/result.total.script.site.answers_only.php');
 } 

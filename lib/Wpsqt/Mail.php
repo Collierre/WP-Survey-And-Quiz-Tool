@@ -59,7 +59,7 @@ class Wpsqt_Mail {
 	public static function sendMail(){
 	
 		global $wpdb;
-		
+				
 		$quizName = $_SESSION['wpsqt']['current_id'];
 		
 		$objTokens = Wpsqt_Tokens::getTokenObject();
@@ -127,6 +127,7 @@ class Wpsqt_Mail {
 		}
 		
 		if ( !isset($emailList) || empty($emailList) || $emailTrue === TRUE ){
+		    var_dump($_SESSION);
 			$emailAddress = get_option('wpsqt_contact_email');
 			if ( !empty($_SESSION['wpsqt'][$quizName]['details']['notification_email'])  ){
 				$emailList[] = $_SESSION['wpsqt'][$quizName]['details']['notification_email'];
@@ -139,6 +140,7 @@ class Wpsqt_Mail {
 		$headers = 'From: '.$blogname.' <'.$fromEmail.'>' . "\r\n";
 		if (isset($emailList) && is_array($emailList)) {
 			foreach( $emailList  as $emailAddress ){
+		        print('justbefore');	
 				wp_mail($emailAddress,$emailSubject,$emailMessage,$headers);
 			}	
 		}

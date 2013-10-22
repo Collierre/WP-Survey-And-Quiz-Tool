@@ -32,7 +32,7 @@ if ( isset($_GET['id']) ){
 		wp_insert_post($post);
 	}
 
-	if ($quizType == 'survey' && $_GET['subsection'] == 'total'){
+	if ($quizType == 'survey' && $_GET['subsection'] == 'total' || $_GET['subsection'] == 'view'){
 		$subsection = 'survey';
 	} else {
 		$subsection = $_GET['subsection'];
