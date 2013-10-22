@@ -52,8 +52,12 @@
 				<b><u>Answers</u></b>
 				<p class="answer_given">
 					<ol>
-						<?php foreach ($questionArray['answers'] as $answerKey => $answer){ ?>
-							  <li><font color="<?php echo ( !isset($answer['correct']) || $answer['correct'] != 'yes' ) ?  (isset($section['answers'][$questionId]['given']) &&  in_array($answerKey, $section['answers'][$questionId]['given']) ) ? '#FF0000' :  '#000000' : '#00FF00' ; ?>"><?php echo stripslashes($answer['text']) ?></font><?php if (isset($section['answers'][$questionId]['given']) && in_array($answerKey, $section['answers'][$questionId]['given']) ){ ?> - Given<?php }?></li>
+						<?php foreach ($questionArray['answers'] as $answerKey => $answer){
+						if($answerKey == 0) $givenAnswerColour = "#43a117";
+						    elseif($answerKey == 1) $givenAnswerColour = "#c91616";
+						    elseif($answerKey == 2) $givenAnswerColour = "#e19d17";
+						    else $givenAnswerColour = "#000"; ?>
+							  <li><font color="<?php echo ( !isset($answer['correct']) || $answer['correct'] != 'yes' ) ?  (isset($section['answers'][$questionId]['given']) &&  in_array($answerKey, $section['answers'][$questionId]['given']) ) ? $givenAnswerColour :  '#000000' : '#00FF00' ; ?>"><?php echo stripslashes($answer['text']) ?></font><?php if (isset($section['answers'][$questionId]['given']) && in_array($answerKey, $section['answers'][$questionId]['given']) ){ ?> - Given<?php }?></li>
 						<?php } ?>
 					</ol>
 				</p>
