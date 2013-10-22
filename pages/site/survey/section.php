@@ -10,13 +10,11 @@ if (isset($GLOBALS['q_config']) && isset($GLOBALS['q_config']['url_info']['url']
 }
 ?>
 <form method="post" action="<?php echo esc_url($url); ?>">
-	<input type="hidden" name="step" value="<?php echo ($_SESSION["wpsqt"]["current_step"]+1); ?>" />
-	<input type="hidden" name="wpsqt_nonce" value="<?php echo WPSQT_NONCE_CURRENT; ?>" />
+	<input type="hidden" name="step" value="<?php echo ($_SESSION["wpsqt"]["current_step"]+1); ?>" /><input type="hidden" name="wpsqt_nonce" value="<?php echo WPSQT_NONCE_CURRENT; ?>" />
 <?php
 $answers = ( isset($_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["answers"]) ) ? $_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["answers"] : array();
 foreach ($_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["questions"] as $questionKey => $question) { ?>
-
-	<div class="wpst_question">
+    <div class="wpsqt_question">
 		<?php
 			$questionId = $question['id'];
 			$givenAnswer = isset($answers[$questionId]['given']) ? $answers[$questionId]['given'] : array();

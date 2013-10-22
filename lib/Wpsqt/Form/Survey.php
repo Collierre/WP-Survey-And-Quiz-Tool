@@ -33,7 +33,7 @@ class Wpsqt_Form_Survey extends Wpsqt_Form {
 
 		$this->addOption("wpsqt_name", "Name", "text", $options['name'], "The name of the survey." )
 			 ->addOption("wpsqt_status", "Status", "select", $options['status'], "If the survey is enabled or disabled.", array("enabled","disabled"))
-			  ->addOption("wpsqt_finish_display", "Finish Display",'select', $options['finish_display'], "What should be displayed on the finishing of the quiz.", array("Default", "Custom finish message", "Results"))
+			  ->addOption("wpsqt_finish_display", "Finish Display",'select', $options['finish_display'], "What should be displayed on the finishing of the quiz.", array("Default", "Custom finish message", "Results", "User answers"))
 			 ->addOption("wpsqt_limit_one", "Limit to one submission per IP","yesno", $options['limit_one'], "Limit the quiz to one submission per IP.")
 			 ->addOption("wpsqt_limit_one_wp", "Limit to one submission per WP user","yesno", $options['limit_one_wp'], "Limit the quiz to one submission per WP user. You must have the Use WP Details option below set to yes.")
 			 ->addOption("wpsqt_limit_one_cookie", "Limit to one submission per computer (using cookies)", "yesno", $options['limit_one_cookie'], "Limit the quiz to one submission per computer/browser")

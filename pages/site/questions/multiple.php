@@ -23,6 +23,6 @@
 			<?php
 			// wb modified code below from unused 'other' field to comment field
 			if (    $question['type'] == 'Multiple Choice' && array_key_exists('comment_field',$question) && $question['comment_field'] == 'yes' ){ ?>
-				<label for="answer_<?php echo $question['id']; ?>_comment"><?php echo $question['comment_label']; ?></label><p><textarea rows="6" cols="50" name="comment[<?php echo $questionKey; ?>][]" value="" ></textarea></p>
+				<p><textarea rows="6" cols="50" name="comment[<?php echo $questionKey; ?>][]" placeholder="<?php echo $question['comment_label']; ?>" value=""></textarea></p>
 				<?php } ?>
 			</ul>

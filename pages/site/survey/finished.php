@@ -22,6 +22,13 @@ $objTokens->setDefaultValues();
 	$result = $wpdb->get_row("SELECT * FROM `".WPSQT_TABLE_SURVEY_CACHE."` WHERE item_id = '".$id."'", ARRAY_A);
 	$sections = unserialize($result['sections']);
 	require_once(WPSQT_DIR.'pages/admin/surveys/result.total.script.site.php');
-} else {
+} 
+else if ($_SESSION['wpsqt'][$quizName]['details']['finish_display'] == 'User answers') {
+    //var_dump($_SESSION['wpsqt'][$quizName]);
+    //var_dump($_SESSION['sections']);
+	$sections = $_SESSION['wpsqt'][$quizName]['sections'];
+	require_once(WPSQT_DIR.'pages/admin/surveys/result.total.script.site.answers_only.php');
+} 
+else {
 	echo '<p>'; _e('Thank you for completing our survey!', 'wp-survey-and-quiz-tool'); echo '</p>';
 } ?>
