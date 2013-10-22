@@ -76,7 +76,7 @@ class Wpsqt_Mail {
 			$emailMessage  = 'There is a new result to view'.PHP_EOL.PHP_EOL;
 			$emailMessage .= 'Person Name : %USER_NAME%'.PHP_EOL;
 			$emailMessage .= 'IP Address : %IP_ADDRESS%'.PHP_EOL;
-			$emailMessage .= 'Result can be viewed at %RESULT_URL%'.PHP_EOL;
+			$emailMessage .= 'Result can be viewed at %RESULT_VIEW_URL%'.PHP_EOL;
 			
 		}
 		
@@ -127,7 +127,6 @@ class Wpsqt_Mail {
 		}
 		
 		if ( !isset($emailList) || empty($emailList) || $emailTrue === TRUE ){
-		    var_dump($_SESSION);
 			$emailAddress = get_option('wpsqt_contact_email');
 			if ( !empty($_SESSION['wpsqt'][$quizName]['details']['notification_email'])  ){
 				$emailList[] = $_SESSION['wpsqt'][$quizName]['details']['notification_email'];
@@ -140,7 +139,6 @@ class Wpsqt_Mail {
 		$headers = 'From: '.$blogname.' <'.$fromEmail.'>' . "\r\n";
 		if (isset($emailList) && is_array($emailList)) {
 			foreach( $emailList  as $emailAddress ){
-		        print('justbefore');	
 				wp_mail($emailAddress,$emailSubject,$emailMessage,$headers);
 			}	
 		}
