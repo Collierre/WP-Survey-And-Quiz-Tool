@@ -22,3 +22,21 @@ div.wpsqt-progress div {
 	height: 10px;
 	border-radius: 10px;
 }
+
+.toggle-addtext-wrapper {
+	margin: 10px 0 0 0;
+}
+
+.toggle-addtext {
+	cursor: pointer;
+	background: green;
+	color: #fff;
+	font-weight: bold;
+	padding: 5px;
+	border: 1px solid #333;
+	border-radius: 8px;
+}
+
+.addtext {
+	display: none;
+}

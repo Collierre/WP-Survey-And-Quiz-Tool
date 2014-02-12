@@ -23,4 +23,14 @@ jQuery(document).ready( function() {
 			jQuery(explanationText).siblings('.wpsqt-show-answer').show();
 		}
 	});
+	
+	jQuery('.toggle-addtext').click(function() {
+		jQuery(this).parent().siblings('.addtext').toggle()
+		if(jQuery(this).html().indexOf('Show') != -1) {
+			jQuery(this).html("Hide additional info");
+		}
+		else {
+			jQuery(this).html("Show additional info");
+		}
+	});
 });
