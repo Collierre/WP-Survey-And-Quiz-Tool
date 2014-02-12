@@ -4,10 +4,10 @@
 
 <?php } else { ?>
 
-	<?php foreach ( $sections as $sectionKey => $secton ){
-			foreach ( $secton['questions'] as $questonKey => $question ) {
+	<?php foreach ( $sections as $sectionKey => $section ){
+			foreach ( $section['questions'] as $questonKey => $question ) {
 		?>
-			<div class="wpsqt-question-review">
+		<div class="wpsqt-question-review">
 			<h3><?php echo $question['name']; ?></h3>
 
 			<?php

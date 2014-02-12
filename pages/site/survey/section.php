@@ -2,7 +2,7 @@
 <div class="quiz">
 <h1><?php echo $_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["name"]; ?></h1>
 
-<?php
+<?php echo $_SESSION; 
 if (isset($GLOBALS['q_config']) && isset($GLOBALS['q_config']['url_info']['url'])) {
 	$url = $GLOBALS['q_config']['url_info']['url'];
 } else {

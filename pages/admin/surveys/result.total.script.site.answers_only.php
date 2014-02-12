@@ -6,14 +6,14 @@ if ( $sections == false ) { ?>
 
 <?php } else { ?>
 
-	<?php foreach ( $sections as $sectionKey => $section ){ ?>
+	<?php foreach ( $sections as $sectionKey => $section ) { ?>
 		<h3><?php // echo $section['name']; ?></h3>
 		
 		<?php
 			if (!isset($section['questions'])){
 				continue;
 			}
-			foreach ($section['questions'] as $questionKey => $questionArray){ 
+			foreach ($section['questions'] as $questionKey => $questionArray) { 
 			
 				$questionId = $questionArray['id'];
 				?>
@@ -58,7 +58,7 @@ if ( $sections == false ) { ?>
 			<?php }
 			if($section['comment']) { ?>
                 <ul style="margin-left:0.9em;">
-                    <li style="list-style-type:none"><span style="font-style:italic;">Comment:</span> <?php echo $section['comment'][0][0]; ?></li>
+                    <li style="list-style-type:none"><span style="font-style:italic;">Comment:</span> <?php echo $section['comment'][$questionKey][0]; ?></li>
                 </ul>
             <?php } ?>
 		<?php } ?>
