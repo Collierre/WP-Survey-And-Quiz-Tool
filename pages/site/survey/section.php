@@ -29,9 +29,11 @@ foreach ($_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["questions"] as 
 					?></strong></font><?php
 				}
 			}
-
-			echo stripslashes($question["name"]);
-
+			?>
+			<h3>
+			<?php echo stripslashes($question["name"]); ?>
+			</h3>
+			<?php
 			if ( !empty($question['add_text']) ){ ?>
 				<div class="toggle-addtext-wrapper">
 					<span class="toggle-addtext">Show additional info</span>
