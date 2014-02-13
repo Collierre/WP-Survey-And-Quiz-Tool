@@ -36,7 +36,7 @@ foreach ($_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["questions"] as 
 			<?php
 			if ( !empty($question['add_text']) ){ ?>
 				<div class="toggle-addtext-wrapper">
-					<span class="toggle-addtext">Show additional info</span>
+					<span class="toggle-addtext">Show detailed explanation</span>
 				</div>
 				<div class="addtext"><?php echo nl2br(stripslashes($question['add_text'])); ?></div>
 			<?php }
