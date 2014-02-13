@@ -2,7 +2,7 @@
 <div class="quiz">
 <h1><?php echo $_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["name"]; ?></h1>
 
-<?php echo $_SESSION; 
+<?php
 if (isset($GLOBALS['q_config']) && isset($GLOBALS['q_config']['url_info']['url'])) {
 	$url = $GLOBALS['q_config']['url_info']['url'];
 } else {
@@ -38,7 +38,7 @@ foreach ($_SESSION["wpsqt"][$quizName]["sections"][$sectionKey]["questions"] as 
 				<div class="toggle-addtext-wrapper">
 					<span class="toggle-addtext">Show additional info</span>
 				</div>
-				<p class="addtext"><?php echo nl2br(stripslashes($question['add_text'])); ?></p>
+				<div class="addtext"><?php echo nl2br(stripslashes($question['add_text'])); ?></div>
 			<?php }
 
 			// See if the question has been missed and this is a replay
