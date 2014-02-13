@@ -27,10 +27,10 @@ jQuery(document).ready( function() {
 	jQuery('.toggle-addtext').click(function() {
 		jQuery(this).parent().siblings('.addtext').toggle()
 		if(jQuery(this).html().indexOf('Show') != -1) {
-			jQuery(this).html("Hide additional info");
+			jQuery(this).html("Hide detailed explanation");
 		}
 		else {
-			jQuery(this).html("Show additional info");
+			jQuery(this).html("Show detailed explanation");
 		}
 	});
 });
