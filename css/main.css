@@ -47,3 +47,16 @@ div.wpsqt-progress div {
 .wpsqt_question {
 	margin-bottom: 30px;
 }
+
+th {
+	text-align: left;
+}
+
+table#survey-answers {
+	margin-right: 5px;
+}
+
+table#survey-answers td {
+	border: 1px solid black;
+	padding: 5px;
+}
