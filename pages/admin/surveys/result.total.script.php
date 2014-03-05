@@ -4,22 +4,24 @@
 
 <?php } else { ?>
 
-	<?php foreach ( $sections as $sectionKey => $secton ){
-			foreach ( $secton['questions'] as $questonKey => $question ) { ?>
+	<?php foreach ( $sections as $sectionKey => $section ){
+			foreach ( $section['questions'] as $questonKey => $question ) { ?>
 			<h3><?php echo $question['name']; ?></h3>
 
 			<?php if ( $question['type'] == "Multiple Choice" ||
 					   $question['type'] == "Dropdown" ) {
-						$googleChartUrl = 'http://chart.apis.google.com/chart?chs=400x185&cht=p';
+						$googleChartUrl = 'http://chart.apis.google.com/chart?chs=400x185&cht=p&';
 						$valueArray    = array();
 						$nameArray     = array();
 					   foreach ( $question['answers'] as $answer ) {
 					   		$nameArray[] = $answer['text'];
 							$valueArray[] = $answer['count'];
 					   }
+					   $nameArray = ['Yes', 'No', 'Not sure'];
 
 						$googleChartUrl .= '&chd=t:'.implode(',', $valueArray);
 						$googleChartUrl .= '&chl='.implode('|',$nameArray);
+						$googleChartUrl .= '&chco=43A117,C91616,E19D17';
 						?>
 
 						<img src="<?php echo $googleChartUrl; ?>" alt="<?php echo $question['name']; ?>" />

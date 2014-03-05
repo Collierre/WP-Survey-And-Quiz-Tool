@@ -1,5 +1,6 @@
 <?php // New results page added by wb
 
+	$answerNames = ['Yes', 'No', 'Not sure'];
 	$answerColours = ['#43a117', '#c91616', '#e19d17'];
 
 	foreach ( $sections as $sectionKey => $section ) { ?>
@@ -22,14 +23,16 @@
 				<td><?php print stripslashes($questionArray['name']); ?></td>
 				<?php 
 				//var_dump($questionArray['answers']);
+				$givenAnswerName = '';
 				$givenAnswerColour = '';
 				if(isset($section['answers'][$questionId]['given'])) {
 					$givenAnswer = $section['answers'][$questionId]['given'][0];
 					//echo 'givenanswer: ', $givenAnswer;
+					$givenAnswerName = $answerNames[$givenAnswer];
 					$givenAnswerColour = $answerColours[$givenAnswer];
 				} ?>
 				
-				<td width=60 style="background:<?php echo $givenAnswerColour ?>"></td>
+				<td width=80 style="background:<?php echo $givenAnswerColour ?>"><div class="table-answer"><?php echo $givenAnswerName ?></div></td>
 				<td><?php echo $section['comment'][$questionKey][0] ?></td>
  				
 			</tr>
