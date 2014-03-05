@@ -60,3 +60,59 @@ table#survey-answers td {
 	border: 1px solid black;
 	padding: 5px;
 }
+
+/* Toolkit */
+.button-secondary {
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	background: #333;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.wpsqt_multiple_question li {
+	list-style-type: none;
+	margin-left: 0;
+}
+
+ul.wpsqt_multiple_question {
+	margin-left: 0;
+}
+
+.wpsqt_question textarea {
+	margin-bottom: 10px;
+}
+
+.quiz p {
+	margin-bottom: 0;
+}
+
+input, textarea {
+	font-family: "Lucida Sans Unicode", "Lucida Sans", "Lucida Grande", Arial, sans-serif!important;
+}
+
+.go-to-toolkit-wrapper {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+}
+
+.go-to-toolkit-wrapper a {
+	color: #fff;
+}
+
+.go-to-toolkit {
+	background: green;
+	color: #fff;
+	font-weight: bold;
+	padding: 5px;
+	border: 1px solid #333;
+	border-radius: 8px;
+}
+
+.table-answer {
+	text-align: center;
+	color: white;
+}
