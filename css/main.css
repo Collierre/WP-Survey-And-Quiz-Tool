@@ -115,4 +115,5 @@ input, textarea {
 .table-answer {
 	text-align: center;
 	color: white;
+	font-weight: bold;
 }
