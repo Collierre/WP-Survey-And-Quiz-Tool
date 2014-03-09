@@ -532,6 +532,8 @@ class Wpsqt_Shortcode {
 		global $wpdb;
 
 		$quizName = $_SESSION['wpsqt']['current_id'];
+		
+		var_dump($_SESSION['wpsqt'][$quizName]);
 
 		if (isset($_SESSION['wpsqt'][$quizName]['details']['timer']) && $_SESSION['wpsqt'][$quizName]['details']['timer'] != '0' && $_SESSION['wpsqt'][$quizName]['details']['timer'] != "") {
 				?>
@@ -640,7 +642,7 @@ class Wpsqt_Shortcode {
 		}
 
 
-		if ( !isset($_SESSION['wpsqt'][$quizName]['details']['store_results']) ||  $_SESSION['wpsqt'][$quizName]['details']['store_results'] !== "no" ){
+		if ( !isset($_SESSION['wpsqt'][$quizName]['details']['store_results']) ||  $_SESSION['wpsqt'][$quizName]['details']['store_results'] !== "no" && in_array('send_survey', $_SESSION['wpsqt'][$quizName]['person'])){
 			$wpdb->query(
 				$wpdb->prepare("INSERT INTO `".WPSQT_TABLE_RESULTS."` (datetaken,timetaken,person,sections,item_id,person_name,ipaddress,score,total,percentage,status,pass)
 								VALUES (%s,%d,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d)",
@@ -658,18 +660,18 @@ class Wpsqt_Shortcode {
 		}
 		$emailAddress = get_option('wpsqt_contact_email');
 
-		if ( isset($_SESSION['wpsqt'][$quizName]['details']['notificaton_type']) && $_SESSION['wpsqt'][$quizName]['details']['notificaton_type'] == 'instant' ){
+		if ( isset($_SESSION['wpsqt'][$quizName]['details']['notification_type']) && $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant' ){
 			$emailTrue = true;
-		} elseif ( isset($_SESSION['wpsqt'][$quizName]['details']['notificaton_type']) && $_SESSION['wpsqt'][$quizName]['details']['notificaton_type'] == 'instant-100'
+		} elseif ( isset($_SESSION['wpsqt'][$quizName]['details']['notification_type']) && $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant-100'
 					&& $percentRight == 100 ) {
 			$emailTrue = true;
-		} elseif ( isset($_SESSION['wpsqt'][$quizName]['details']['notificaton_type']) && $_SESSION['wpsqt'][$quizName]['details']['notificaton_type'] == 'instant-75'
+		} elseif ( isset($_SESSION['wpsqt'][$quizName]['details']['notification_type']) && $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant-75'
 					 && $percentRight > 75 ){
 			$emailTrue = true;
-		} elseif ( isset($_SESSION['wpsqt'][$quizName]['details']['notificaton_type']) && $_SESSION['wpsqt'][$quizName]['details']['notificaton_type'] == 'instant-50'
+		} elseif ( isset($_SESSION['wpsqt'][$quizName]['details']['notification_type']) && $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant-50'
 					&& $percentRight > 50 ){
 			$emailTrue = true;
-		} elseif ( isset($_SESSION['wpsqt'][$quizName]['details']['notificaton_type']) && isset($_SESSION['wpsqt'][$quizName]['details']['send_user']) && $_SESSION['wpsqt'][$quizName]['details']['send_user'] == 'yes' ) {
+		} elseif ( isset($_SESSION['wpsqt'][$quizName]['details']['notification_type']) && isset($_SESSION['wpsqt'][$quizName]['details']['send_user']) && $_SESSION['wpsqt'][$quizName]['details']['send_user'] == 'yes' ) {
 			$emailTrue = true;
 		}
 

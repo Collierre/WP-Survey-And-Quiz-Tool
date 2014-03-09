@@ -16,7 +16,7 @@ class Wpsqt_Form_Survey extends Wpsqt_Form {
 
 		if ( empty($options) ){
 			$options = array('name' => false,
-							'notificaton_type' => false,
+							'notification_type' => false,
 							'limit_one' => false,
 							'limit_one_wp' => false,
 							'limit_one_cookie' => false,
@@ -40,7 +40,7 @@ class Wpsqt_Form_Survey extends Wpsqt_Form {
 			 ->addOption("wpsqt_show_progress_bar", "Show progress bar", "yesno", $options['show_progress_bar'], "Shows a progress bar based on which section the user is on")
 			 ->addOption("wpsqt_show_results_limited", "Show the results if the user has already taken the survey", "yesno", $options['show_results_limited'], "If limiting is enabled (by either method) do you want to show the results to the user if they have already taken the survey?")
 			 ->addOption("wpsqt_contact", "Take contact details", "yesno", $options['contact'] ,"This will show a form for users to enter their contact details before proceeding.")
-			 ->addOption("wpsqt_notificaton_type", "Complete Notification", "select", $options['notificaton_type'] , "Send a notification email of completion.",array('none','instant') )
+			 ->addOption("wpsqt_notification_type", "Complete Notification", "select", $options['notification_type'] , "Send a notification email of completion.",array('none','instant') )
 			 ->addOption("wpsqt_use_wp", "Use WordPress user details", "yesno", $options['use_wp'], "This will allow you to have the survey to use the details of the user if they are signed in. If enabled the contact form will not be shown if enabled.")
 			 ->addOption("wpsqt_email_template", "Custom Email Template", "textarea", $options['email_template'], "The template of the email sent on notification. <strong>If empty the default one will be sent.</strong> <a href=\"#template_tokens\">Click Here</a> to see the tokens that can be used.", array(), false)
 			 ->addOption("wpsqt_notification_email", "Notification Email", "text", $options['notification_email'], "The email address which is to be notified when the survey is completed. Emails can be separated by a comma. <strong>Will override plugin wide option.</strong>", array(), false )

@@ -19,7 +19,7 @@ class Wpsqt_Form_Quiz extends Wpsqt_Form {
 
 		if ( empty($options) ){
 			$options = array('name' => false,
-							'notificaton_type' => false,
+							'notification_type' => false,
 							'limit_one' => false,
 							'limit_one_wp' => false,
 							'limit_one_cookie' => false,
@@ -60,7 +60,7 @@ class Wpsqt_Form_Quiz extends Wpsqt_Form {
 			 ->addOption("wpsqt_send_user", "Send notification email to user as well", "yesno", $options["send_user"], "Should we send a notification email to the user who took the quiz. You must enable the 'use wordpress details' option below and the use must be logged in for this to work. This is due to a bug in the 'take contact details' option." )
 			 ->addOption("wpsqt_contact", "Take contact details", "yesno", $options['contact'] ,"This will show a form for users to enter their contact details before proceeding.")
 			 ->addOption("wpsqt_use_wp", "Use WordPress user details", "yesno", $options['use_wp'], "This will allow you to have the quiz to use the details of the user if they are signed in. If enabled the contact form will not be shown if enabled.")
-			 ->addOption("wpsqt_notificaton_type", "Complete Notification", "select", $options['notificaton_type'] , "Send a notification email on of completion the quiz by a user.",array('none','instant','instant 100% correct','instant 75% correct','instant 50% correct') )
+			 ->addOption("wpsqt_notification_type", "Complete Notification", "select", $options['notification_type'] , "Send a notification email on of completion the quiz by a user.",array('none','instant','instant 100% correct','instant 75% correct','instant 50% correct') )
 			 ->addOption("wpsqt_email_template", "Custom Email Template", "textarea", $options['email_template'], "The template of the email sent on notification. <strong>If empty the default one will be sent.</strong> <a href=\"#template_tokens\">Click Here</a> to see the tokens that can be used.", array(), false)
 			 ->addOption("wpsqt_pdf_template", "PDF Template", "textarea", $options['pdf_template'], "The template for the PDF. <strong>If you're not using pdf certificates then leave blank.</strong> <a href=\"#template_tokens\">Click Here</a> to see the tokens that can be used.", array(), false)
 			 ->addOption("wpsqt_use_pdf", "PDF Certificates","yesno", $options['use_pdf'], "Allow the user to download a PDF certificate.")

@@ -362,7 +362,7 @@ class WpsqtFormTest extends PHPUnit_Framework_TestCase {
 		$expectedForm .= '</tr><tr>';
 		$expectedForm .= '<th scope="row">Complete Notification</th>';
 		$expectedForm .= '<td valign="top">';
-		$expectedForm .= '<select id="wpsqt_notificaton_type" name="wpsqt_notificaton_type">';
+		$expectedForm .= '<select id="wpsqt_notification_type" name="wpsqt_notification_type">';
 		$expectedForm .= '<option value="none">none</option>';
 		$expectedForm .= '<option value="instant">instant</option>';
 		$expectedForm .= '<option value="instant 100%">instant 100%</option>';
@@ -417,7 +417,7 @@ class WpsqtFormTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals($expectedForm,$formOneLine, "Form not as expected");
 
 		$errorMessages = $objForm->getMessages( array( "wpsqt_name" => "PHPUnit test",
-													   "wpsqt_notificaton_type" => "none",
+													   "wpsqt_notification_type" => "none",
 													   "wpsqt_limit_one" => "yes",
 													   "wpsqt_finish_display" => "Quiz Review",
 													   "wpsqt_contact" => "no",

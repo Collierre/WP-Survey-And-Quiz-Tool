@@ -90,6 +90,8 @@ jQuery(document).ready( function(){
 		html += '<td><select name="type['+rowCount+']">';
 		html += '<option value="text">Text</option>';
 		html += '<option value="textarea">Textarea</option>';
+		html += '<option value="select">Select</option>';
+		html += '<option value="checkbox">Checkbox</option>';
 		html += '</select></td>';
 		html += '<td><select name="required['+rowCount+']">';
 		html += '<option value="no">No</option>';

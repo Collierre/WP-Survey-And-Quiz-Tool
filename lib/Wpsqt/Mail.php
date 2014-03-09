@@ -22,7 +22,7 @@ class Wpsqt_Mail {
 		
 		$objTokens = Wpsqt_Tokens::getTokenObject();
 		$objTokens->setDefaultValues();
-
+		
 		$emailMessage = $_SESSION['wpsqt'][$quizName]['details']['email_template'];
 		
 		if ( empty($emailMessage) ){
@@ -50,13 +50,64 @@ class Wpsqt_Mail {
 
 		wp_mail($address,$emailSubject,$emailMessage,$headers);
 	}
+	
+	private function _sendRespondentResults($address) {
+		$blogname = get_bloginfo('name');
+		$emailSubject = $type.' Notification From '.$blogname;
+		$headers = 'From: '.$blogname.' <'.$fromEmail.'>' . "\r\n";
+		$headers .= "Content-Type: text/html; charset='UTF-8'\r\n";
+		
+		$emailMessage = "<html>
+		<head>
+		</head>
+		<body>";
+		
+		$answerNames = ['Yes', 'No', 'Not sure'];
+		$answerColours = ['#43a117', '#c91616', '#e19d17'];
+		
+		$quizName = $_SESSION['wpsqt']['current_id'];
+
+		foreach ($_SESSION['wpsqt'][$quizName]['sections'] as $sectionKey => $section ) {
+			$emailMessage .= "<table id='survey-answers'>
+				<tr>
+					<th>Question</th>
+					<th>Judgement</th>
+					<th>Comment</th>
+				</tr>";
+				foreach ($section['questions'] as $questionKey => $questionArray) {
+			
+					$questionId = $questionArray['id'];
+					$emailMessage .= "<tr>	
+					<td>" . stripslashes($questionArray['name']) . "</td>";
+					$givenAnswerName = '';
+					$givenAnswerColour = '';
+					if(isset($section['answers'][$questionId]['given'])) {
+						$givenAnswer = $section['answers'][$questionId]['given'][0];
+						$givenAnswerName = $answerNames[$givenAnswer];
+						$givenAnswerColour = $answerColours[$givenAnswer];
+					}
+				
+					$emailMessage .= "<td width=80 style='background:" . $givenAnswerColour . "'><div class='table-answer'>" . $givenAnswerName . "</div></td>
+					<td>" . $section['comment'][$questionKey][0] . "</td>
+				
+				</tr>";
+			}
+			$emailMessage .= "</table>";
+		}
+		
+		$emailMessage .= "</body></html>";
+
+		wp_mail($address,$emailSubject,$emailMessage,$headers);
+	}
 
 	/**
-	 * Sends the notificatione mail.
+	 * Sends the notification mail.
 	 * 
 	 * @since 2.0
 	 */
 	public static function sendMail(){
+	
+		echo 'sendmail';
 	
 		global $wpdb;
 				
@@ -113,15 +164,19 @@ class Wpsqt_Mail {
 			self::_sendRespondentMail($_SESSION['wpsqt'][$quizName]['person']['email']);
 		}
 		
-		if ( $_SESSION['wpsqt'][$quizName]['details']['notificaton_type'] == 'instant' ){
+		if (isset($_SESSION['wpsqt'][$quizName]['person']['email'])) {
+			self::_sendRespondentResults($_SESSION['wpsqt'][$quizName]['person']['email']);
+		}
+		
+		if ( $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant' ){
 			$emailTrue = true;
-		} elseif ( $_SESSION['wpsqt'][$quizName]['details']['notificaton_type'] == 'instant-100' 
+		} elseif ( $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant-100' 
 					&& $percentRight == 100 ) {
 			$emailTrue = true;	
-		} elseif ( $_SESSION['wpsqt'][$quizName]['details']['notificaton_type'] == 'instant-75' 
+		} elseif ( $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant-75' 
 					 && $percentRight > 75 ){
 			$emailTrue = true;
-		} elseif ( $_SESSION['wpsqt'][$quizName]['details']['notificaton_type'] == 'instant-50'  
+		} elseif ( $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant-50'  
 					&& $percentRight > 50 ){
 			$emailTrue = true;
 		}
