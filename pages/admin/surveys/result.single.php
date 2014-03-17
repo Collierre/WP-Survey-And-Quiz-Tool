@@ -42,12 +42,10 @@
 				<tr>	
 				<td><?php print stripslashes($questionArray['name']); ?></td>
 				<?php 
-				//var_dump($questionArray['answers']);
 				$givenAnswerName = '';
 				$givenAnswerColour = '';
 				if(isset($section['answers'][$questionId]['given'])) {
 					$givenAnswer = $section['answers'][$questionId]['given'][0];
-					//echo 'givenanswer: ', $givenAnswer;
 					$givenAnswerName = $answerNames[$givenAnswer];
 					$givenAnswerColour = $answerColours[$givenAnswer];
 				} ?>

@@ -25,7 +25,7 @@
 			<textarea name="Custom_<?php echo $fieldName; ?>" rows="4" cols="40"><?php if ( isset($field['value'])) { echo $field['value']; } ?></textarea>
 		<?php } 
 			else if($field['type'] == 'checkbox') { ?>
-				<input type="checkbox" name="Custom_<?php echo $fieldName; ?>" value="send_survey" />
+				<input type="checkbox" name="Custom_<?php echo $fieldName; ?>" value="send_survey" checked />
 			<?php } ?>
 			</td>
 		</tr>

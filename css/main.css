@@ -39,6 +39,10 @@ div.wpsqt-progress div {
 	border-radius: 8px;
 }
 
+.toggle-addtext:hover {
+	background: rgb(107,175,107);
+}
+
 .addtext {
 	display: none;
 	margin-top: 20px;
@@ -54,6 +58,7 @@ th {
 
 table#survey-answers {
 	margin-right: 5px;
+	border-collapse: collapse;
 }
 
 table#survey-answers td {
@@ -96,7 +101,9 @@ input, textarea {
 .go-to-toolkit-wrapper {
 	padding-top: 5px;
 	padding-bottom: 5px;
-	margin-bottom: 5px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+	text-align: center;
 }
 
 .go-to-toolkit-wrapper a {
@@ -106,10 +113,15 @@ input, textarea {
 .go-to-toolkit {
 	background: green;
 	color: #fff;
+	font-size: 1.5em;
 	font-weight: bold;
-	padding: 5px;
+	padding: 10px;
 	border: 1px solid #333;
 	border-radius: 8px;
+}
+
+.go-to-toolkit:hover {
+	background: rgb(107,175,107);
 }
 
 .table-answer {

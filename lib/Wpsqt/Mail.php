@@ -61,33 +61,11 @@ class Wpsqt_Mail {
 		
 		$emailMessage = "<html>
 		<head>
-			<style type='text/css'>
-				h1 {
-					font-size: 22px;
-				}
-				
-				table#survey-answers {
-					margin-right: 5px;
-					border-collapse: collapse;
-					border-spacing: 0;
-				}
-
-				table#survey-answers td {
-					border: 1px solid black;
-					padding: 5px;
-				}
-				
-				.table-answer {
-					text-align: center;
-					color: white;
-					font-weight: bold;
-				}
-			</style>
 		</head>
 		<body>
-		<h1>The Policy from Science Project Toolkit for the Appraisal of Reviews of Toxicological Research</h1>";
+		<h1 style='font-size:22px'>The Policy from Science Project Toolkit for the Appraisal of Reviews of Toxicological Research</h1>";
 		if(array_key_exists("enter the citation information for the review you are appraising", $_SESSION['wpsqt'][$quizName]['person'])) {
-			$emailMessage .= "<h2>Citation information: " . $_SESSION['wpsqt'][$quizName]['person']['enter the citation information for the review you are appraising'] . "</h2>";
+			$emailMessage .= "<h2>Citation information: " . stripslashes($_SESSION['wpsqt'][$quizName]['person']['enter the citation information for the review you are appraising']) . "</h2>";
 		}
 		$emailMessage .= "<h2>Thank you for completing the survey. The answers you gave are below.</h2>";
 		
@@ -96,17 +74,17 @@ class Wpsqt_Mail {
 		
 
 		foreach ($_SESSION['wpsqt'][$quizName]['sections'] as $sectionKey => $section ) {
-			$emailMessage .= "<table id='survey-answers'>
+			$emailMessage .= "<table id='survey-answers' style='border-spacing:0;border-collapse:collapse'>
 				<tr>
-					<th>Question</th>
-					<th>Judgement</th>
-					<th>Comment</th>
+					<th style='border: 1px solid #000; padding: 5px'>Question</th>
+					<th style='border: 1px solid #000; padding: 5px'>Judgement</th>
+					<th style='border: 1px solid #000; padding: 5px'>Comment</th>
 				</tr>";
 				foreach ($section['questions'] as $questionKey => $questionArray) {
 			
 					$questionId = $questionArray['id'];
 					$emailMessage .= "<tr>	
-					<td>" . stripslashes($questionArray['name']) . "</td>";
+					<td style='border: 1px solid #000; padding: 5px; color: #fff'>" . stripslashes($questionArray['name']) . "</td>";
 					$givenAnswerName = '';
 					$givenAnswerColour = '';
 					if(isset($section['answers'][$questionId]['given'])) {
@@ -115,8 +93,8 @@ class Wpsqt_Mail {
 						$givenAnswerColour = $answerColours[$givenAnswer];
 					}
 				
-					$emailMessage .= "<td width=80 style='background:" . $givenAnswerColour . "'><div class='table-answer'>" . $givenAnswerName . "</div></td>
-					<td>" . $section['comment'][$questionKey][0] . "</td>
+					$emailMessage .= "<td width=80 style='border: 1px solid #000; padding: 5px; background:" . $givenAnswerColour . "'><div class='table-answer'>" . $givenAnswerName . "</div></td>
+					<td style='border: 1px solid #000; padding: 5px'>" . $section['comment'][$questionKey][0] . "</td>
 				
 				</tr>";
 			}
