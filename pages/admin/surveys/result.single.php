@@ -15,17 +15,6 @@
 					<th scope="row"><?php echo esc_html(strip_tags(wp_kses_stripslashes($fieldName))); ?></th>
 					<td><?php echo esc_html(strip_tags(wp_kses_stripslashes($fieldValue))); ?></td>
 				</tr>
-				<?php }
-					  if (isset($result['ipaddress'])){
-				?>
-				<tr>
-					<th scope="row">IP Address</th>
-					<td><?php echo $result['ipaddress']; ?></td>
-				</tr>
-				<tr>
-					<th scope="row">Hostname</th>
-					<td><?php echo gethostbyaddr($result['ipaddress']); ?></td>
-				</tr>
 				<?php } ?>
 			</table>
 		</div>

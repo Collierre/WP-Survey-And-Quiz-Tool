@@ -533,8 +533,6 @@ class Wpsqt_Shortcode {
 
 		$quizName = $_SESSION['wpsqt']['current_id'];
 		
-		//var_dump($_SESSION['wpsqt'][$quizName]);
-
 		if (isset($_SESSION['wpsqt'][$quizName]['details']['timer']) && $_SESSION['wpsqt'][$quizName]['details']['timer'] != '0' && $_SESSION['wpsqt'][$quizName]['details']['timer'] != "") {
 				?>
 					<script type="text/javascript">

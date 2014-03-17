@@ -57,9 +57,15 @@ class Wpsqt_Mail {
 		$headers = 'From: '.$blogname.' <'.$fromEmail.'>' . "\r\n";
 		$headers .= "Content-Type: text/html; charset='UTF-8'\r\n";
 		
+		$quizName = $_SESSION['wpsqt']['current_id'];
+		
 		$emailMessage = "<html>
 		<head>
 			<style type='text/css'>
+				h1 {
+					font-size: 22px;
+				}
+				
 				table#survey-answers {
 					margin-right: 5px;
 					border-collapse: collapse;
@@ -79,13 +85,15 @@ class Wpsqt_Mail {
 			</style>
 		</head>
 		<body>
-		<h1>The Policy from Science Project Toolkit for the Appraisal of Reviews of Toxicological Research</h1>
-		<h2>Thank you for completing the survey. The answers you gave are below.</h2>";
+		<h1>The Policy from Science Project Toolkit for the Appraisal of Reviews of Toxicological Research</h1>";
+		if(array_key_exists("enter the citation information for the review you are appraising", $_SESSION['wpsqt'][$quizName]['person'])) {
+			$emailMessage .= "<h2>Citation information: " . $_SESSION['wpsqt'][$quizName]['person']['enter the citation information for the review you are appraising'] . "</h2>";
+		}
+		$emailMessage .= "<h2>Thank you for completing the survey. The answers you gave are below.</h2>";
 		
 		$answerNames = ['Yes', 'No', 'Not sure'];
 		$answerColours = ['#43a117', '#c91616', '#e19d17'];
 		
-		$quizName = $_SESSION['wpsqt']['current_id'];
 
 		foreach ($_SESSION['wpsqt'][$quizName]['sections'] as $sectionKey => $section ) {
 			$emailMessage .= "<table id='survey-answers'>
@@ -126,7 +134,7 @@ class Wpsqt_Mail {
 	 * @since 2.0
 	 */
 	public static function sendMail(){
-		
+				
 		global $wpdb;
 				
 		$quizName = $_SESSION['wpsqt']['current_id'];
@@ -144,7 +152,6 @@ class Wpsqt_Mail {
 			
 			$emailMessage  = 'There is a new result to view'.PHP_EOL.PHP_EOL;
 			$emailMessage .= 'Person Name : %USER_NAME%'.PHP_EOL;
-			$emailMessage .= 'IP Address : %IP_ADDRESS%'.PHP_EOL;
 			$emailMessage .= 'Result can be viewed at %RESULT_VIEW_URL%'.PHP_EOL;
 			
 		}
