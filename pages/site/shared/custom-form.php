@@ -14,7 +14,6 @@
 	<input type="hidden" name="wpsqt_name" value="<?php echo $quizName; ?>" />
 	<table cellpadding="0" cellspacing="0" border="0" width="100%">
 	<?php foreach($fields as $field){
-		var_dump($field);
 			$fieldName = preg_replace('~[^a-z0-9]~i','',$field['name']);
 		?>
 		<tr>
@@ -26,7 +25,7 @@
 			<textarea name="Custom_<?php echo $fieldName; ?>" rows="4" cols="40"><?php if ( isset($field['value'])) { echo $field['value']; } ?></textarea>
 		<?php } 
 			else if($field['type'] == 'checkbox') { ?>
-				<input type="checkbox" name="Custom_<?php echo $fieldName; ?>" value="send-survey" />
+				<input type="checkbox" name="Custom_<?php echo $fieldName; ?>" value="send_survey" />
 			<?php } ?>
 			</td>
 		</tr>

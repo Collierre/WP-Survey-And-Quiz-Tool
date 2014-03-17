@@ -51,7 +51,7 @@ class Wpsqt_Mail {
 		wp_mail($address,$emailSubject,$emailMessage,$headers);
 	}
 	
-	private function _sendRespondentResults($address) {
+	public static function sendRespondentResults($address) {
 		$blogname = get_bloginfo('name');
 		$emailSubject = $type.' Notification From '.$blogname;
 		$headers = 'From: '.$blogname.' <'.$fromEmail.'>' . "\r\n";
@@ -59,8 +59,28 @@ class Wpsqt_Mail {
 		
 		$emailMessage = "<html>
 		<head>
+			<style type='text/css'>
+				table#survey-answers {
+					margin-right: 5px;
+					border-collapse: collapse;
+					border-spacing: 0;
+				}
+
+				table#survey-answers td {
+					border: 1px solid black;
+					padding: 5px;
+				}
+				
+				.table-answer {
+					text-align: center;
+					color: white;
+					font-weight: bold;
+				}
+			</style>
 		</head>
-		<body>";
+		<body>
+		<h1>The Policy from Science Project Toolkit for the Appraisal of Reviews of Toxicological Research</h1>
+		<h2>Thank you for completing the survey. The answers you gave are below.</h2>";
 		
 		$answerNames = ['Yes', 'No', 'Not sure'];
 		$answerColours = ['#43a117', '#c91616', '#e19d17'];
@@ -106,9 +126,7 @@ class Wpsqt_Mail {
 	 * @since 2.0
 	 */
 	public static function sendMail(){
-	
-		echo 'sendmail';
-	
+		
 		global $wpdb;
 				
 		$quizName = $_SESSION['wpsqt']['current_id'];
@@ -165,7 +183,7 @@ class Wpsqt_Mail {
 		}
 		
 		if (isset($_SESSION['wpsqt'][$quizName]['person']['email'])) {
-			self::_sendRespondentResults($_SESSION['wpsqt'][$quizName]['person']['email']);
+			self::sendRespondentResults($_SESSION['wpsqt'][$quizName]['person']['email']);
 		}
 		
 		if ( $_SESSION['wpsqt'][$quizName]['details']['notification_type'] == 'instant' ){

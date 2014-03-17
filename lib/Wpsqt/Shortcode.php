@@ -533,7 +533,7 @@ class Wpsqt_Shortcode {
 
 		$quizName = $_SESSION['wpsqt']['current_id'];
 		
-		var_dump($_SESSION['wpsqt'][$quizName]);
+		//var_dump($_SESSION['wpsqt'][$quizName]);
 
 		if (isset($_SESSION['wpsqt'][$quizName]['details']['timer']) && $_SESSION['wpsqt'][$quizName]['details']['timer'] != '0' && $_SESSION['wpsqt'][$quizName]['details']['timer'] != "") {
 				?>
@@ -640,9 +640,16 @@ class Wpsqt_Shortcode {
 				$status = 'unviewed';
 			}
 		}
+		
+		if(in_array('send_survey', $_SESSION['wpsqt'][$quizName]['person'])) {
+		    $sendSurvey = true;
+		}
+		else {
+		    $sendSurvey = false;
+		}
 
 
-		if ( !isset($_SESSION['wpsqt'][$quizName]['details']['store_results']) ||  $_SESSION['wpsqt'][$quizName]['details']['store_results'] !== "no" && in_array('send_survey', $_SESSION['wpsqt'][$quizName]['person'])){
+		if (( !isset($_SESSION['wpsqt'][$quizName]['details']['store_results']) ||  $_SESSION['wpsqt'][$quizName]['details']['store_results'] !== "no" ) && $sendSurvey){
 			$wpdb->query(
 				$wpdb->prepare("INSERT INTO `".WPSQT_TABLE_RESULTS."` (datetaken,timetaken,person,sections,item_id,person_name,ipaddress,score,total,percentage,status,pass)
 								VALUES (%s,%d,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d)",
@@ -675,8 +682,12 @@ class Wpsqt_Shortcode {
 			$emailTrue = true;
 		}
 
-		if ( isset($emailTrue) ){
+		if ( isset($emailTrue) && $sendSurvey ){
 			Wpsqt_Mail::sendMail();
+		}
+		
+		else {
+			Wpsqt_Mail::sendRespondentResults($_SESSION['wpsqt'][$quizName]['person']['email']);
 		}
 
 		if ( $this->_type == "survey" || $this->_type == "poll" ){
