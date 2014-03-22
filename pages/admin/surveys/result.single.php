@@ -6,16 +6,18 @@
 	<?php require WPSQT_DIR.'pages/admin/misc/navbar.php'; ?>
 		
 	<?php if (!empty($result['person'])) { ?>
-		<h3>User Details</h3>
+		<h3>Quiz Details</h3>
 		<div class="person">
 		
 			<table cellpadding="0" cellspacing="0" border="0" width="100%">
-				<?php foreach($result['person'] as $fieldName => $fieldValue){?>
-				<tr>
-					<th scope="row"><?php echo esc_html(strip_tags(wp_kses_stripslashes($fieldName))); ?></th>
-					<td><?php echo esc_html(strip_tags(wp_kses_stripslashes($fieldValue))); ?></td>
-				</tr>
-				<?php } ?>
+				<?php foreach($result['person'] as $fieldName => $fieldValue){
+					if($fieldName != 'email'){ ?>
+						<tr>
+							<th scope="row"><?php echo esc_html(strip_tags(wp_kses_stripslashes($fieldName))); ?></th>
+							<td><?php echo esc_html(strip_tags(wp_kses_stripslashes($fieldValue))); ?></td>
+						</tr>
+					<?php }
+				} ?>
 			</table>
 		</div>
 	<?php } ?>

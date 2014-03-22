@@ -24,7 +24,7 @@ $objTokens->setDefaultValues();
 } 
 else if ($_SESSION['wpsqt'][$quizName]['details']['finish_display'] == 'User answers') {
     if(array_key_exists("enter the citation information for the review you are appraising", $_SESSION['wpsqt'][$quizName]['person'])) {
-			echo "<h2>Citation information: " . stripslashes($_SESSION['wpsqt'][$quizName]['person']['enter the citation information for the review you are appraising']) . "</h2>";
+			echo "<h2>" . stripslashes($_SESSION['wpsqt'][$quizName]['person']['enter the citation information for the review you are appraising']) . "</h2>";
 	}
     echo '<p>'; _e('Thank you for completing the survey. The answers you gave are below. If you gave your email address, your results have been emailed to you.', 'wp-survey-and-quiz-tool'); echo '</p>';
 	$sections = $_SESSION['wpsqt'][$quizName]['sections'];

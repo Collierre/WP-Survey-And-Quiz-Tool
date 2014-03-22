@@ -65,7 +65,7 @@ class Wpsqt_Mail {
 		<body>
 		<h1 style='font-size:22px'>The Policy from Science Project Toolkit for the Appraisal of Reviews of Toxicological Research</h1>";
 		if(array_key_exists("enter the citation information for the review you are appraising", $_SESSION['wpsqt'][$quizName]['person'])) {
-			$emailMessage .= "<h2>Citation information: " . stripslashes($_SESSION['wpsqt'][$quizName]['person']['enter the citation information for the review you are appraising']) . "</h2>";
+			$emailMessage .= "<h2>" . stripslashes($_SESSION['wpsqt'][$quizName]['person']['enter the citation information for the review you are appraising']) . "</h2>";
 		}
 		$emailMessage .= "<h2>Thank you for completing the survey. The answers you gave are below.</h2>";
 		
@@ -93,7 +93,7 @@ class Wpsqt_Mail {
 						$givenAnswerColour = $answerColours[$givenAnswer];
 					}
 				
-					$emailMessage .= "<td width=80 style='border: 1px solid #000; padding: 5px; background:" . $givenAnswerColour . "'><div class='table-answer'>" . $givenAnswerName . "</div></td>
+					$emailMessage .= "<td width=80 style='border: 1px solid #000; padding: 5px; background:" . $givenAnswerColour . "'><div class='table-answer' style='font-weight:bold;color:#fff;text-align:center;'>" . $givenAnswerName . "</div></td>
 					<td style='border: 1px solid #000; padding: 5px'>" . $section['comment'][$questionKey][0] . "</td>
 				
 				</tr>";
