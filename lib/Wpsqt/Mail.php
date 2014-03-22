@@ -84,7 +84,7 @@ class Wpsqt_Mail {
 			
 					$questionId = $questionArray['id'];
 					$emailMessage .= "<tr>	
-					<td style='border: 1px solid #000; padding: 5px; color: #fff'>" . stripslashes($questionArray['name']) . "</td>";
+					<td style='border: 1px solid #000; padding: 5px; color: #000'>" . stripslashes($questionArray['name']) . "</td>";
 					$givenAnswerName = '';
 					$givenAnswerColour = '';
 					if(isset($section['answers'][$questionId]['given'])) {
