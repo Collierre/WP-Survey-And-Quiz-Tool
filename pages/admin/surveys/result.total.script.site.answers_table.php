@@ -1,7 +1,7 @@
 <?php // New results page added by wb
 
-	$answerNames = ['Yes', 'No', 'Unclear'];
-	$answerColours = ['#43a117', '#c91616', '#e19d17'];
+	$answerNames = ['Yes', 'Unclear', 'No'];
+	$answerColours = ['#43a117', '#e19d17', '#c91616'];
 
 	foreach ( $sections as $sectionKey => $section ) { ?>
 		<h3><?php // echo $section['name']; ?></h3>

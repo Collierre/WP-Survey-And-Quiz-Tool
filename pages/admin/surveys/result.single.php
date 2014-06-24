@@ -23,8 +23,8 @@
 	<?php } ?>
 	
 	<?php 
-	$answerNames = ['Yes', 'No', 'Unclear'];
-	$answerColours = ['#43a117', '#c91616', '#e19d17'];
+	$answerNames = ['Yes', 'Unclear', 'No'];
+	$answerColours = ['#43a117', '#e19d17', '#c91616'];
 	foreach ( $result['sections'] as $section ){ ?>
 		<h3><?php echo $section['name']; ?></h3>
 		<table id="survey-answers">

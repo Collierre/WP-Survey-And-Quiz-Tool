@@ -69,8 +69,8 @@ class Wpsqt_Mail {
 		}
 		$emailMessage .= "<h2>Thank you for completing the survey. The answers you gave are below.</h2>";
 		
-		$answerNames = ['Yes', 'No', 'Unclear'];
-		$answerColours = ['#43a117', '#c91616', '#e19d17'];
+		$answerNames = ['Yes', 'Unclear', 'No'];
+		$answerColours = ['#43a117', '#e19d17', '#c91616'];
 		
 
 		foreach ($_SESSION['wpsqt'][$quizName]['sections'] as $sectionKey => $section ) {

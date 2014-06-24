@@ -645,7 +645,6 @@ class Wpsqt_Shortcode {
 		else {
 		    $sendSurvey = false;
 		}
-
                         // Note preg_replace removal of any email address for pfs anonymity purposes
 		if (( !isset($_SESSION['wpsqt'][$quizName]['details']['store_results']) ||  $_SESSION['wpsqt'][$quizName]['details']['store_results'] !== "no" ) && $sendSurvey){
 			$wpdb->query(
@@ -680,10 +679,21 @@ class Wpsqt_Shortcode {
 			$emailTrue = true;
 		}
 
+                            // Add 'email' array entry from likely place for sending repondent emails
+                        $_SESSION['wpsqt'][$quizName]['person']['email'];
+                        foreach($_SESSION['wpsqt'][$quizName]['person'] as $person_detail)
+                        {
+                             if (preg_match ("/.*@.*/", $person_detail))
+                            {
+                                $_SESSION['wpsqt'][$quizName]['person']['email'] = $person_detail;
+                            }
+                        }
+
 		if ( isset($emailTrue) && $sendSurvey ){
 			Wpsqt_Mail::sendMail();
 		}
 		
+
 		else {
 			Wpsqt_Mail::sendRespondentResults($_SESSION['wpsqt'][$quizName]['person']['email']);
 		}
