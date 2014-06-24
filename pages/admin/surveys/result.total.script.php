@@ -17,7 +17,7 @@
 					   		$nameArray[] = $answer['text'];
 							$valueArray[] = $answer['count'];
 					   }
-					   $nameArray = ['Yes', 'No', 'Not sure'];
+					   $nameArray = ['Yes', 'No', 'Unclear'];
 
 						$googleChartUrl .= '&chd=t:'.implode(',', $valueArray);
 						$googleChartUrl .= '&chl='.implode('|',$nameArray);

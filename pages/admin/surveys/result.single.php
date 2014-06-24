@@ -23,7 +23,7 @@
 	<?php } ?>
 	
 	<?php 
-	$answerNames = ['Yes', 'No', 'Not sure'];
+	$answerNames = ['Yes', 'No', 'Unclear'];
 	$answerColours = ['#43a117', '#c91616', '#e19d17'];
 	foreach ( $result['sections'] as $section ){ ?>
 		<h3><?php echo $section['name']; ?></h3>
