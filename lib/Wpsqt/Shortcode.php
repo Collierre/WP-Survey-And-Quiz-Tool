@@ -646,14 +646,14 @@ class Wpsqt_Shortcode {
 		    $sendSurvey = false;
 		}
 
-
+                        // Note preg_replace removal of any email address for pfs anonymity purposes
 		if (( !isset($_SESSION['wpsqt'][$quizName]['details']['store_results']) ||  $_SESSION['wpsqt'][$quizName]['details']['store_results'] !== "no" ) && $sendSurvey){
 			$wpdb->query(
 				$wpdb->prepare("INSERT INTO `".WPSQT_TABLE_RESULTS."` (datetaken,timetaken,person,sections,item_id,person_name,ipaddress,score,total,percentage,status,pass)
 								VALUES (%s,%d,%s,%s,%d,%s,%s,%d,%d,%d,%s,%d)",
 								   array($_SESSION['wpsqt'][$quizName]['start_time'],
 							   		 $timeTaken,
-							   		 serialize($_SESSION['wpsqt'][$quizName]['person']),
+							   		 serialize(preg_replace("/.*@.*/", "",$_SESSION['wpsqt'][$quizName]['person'])),
 							   		 serialize($_SESSION['wpsqt'][$quizName]['sections']),
 							   		 $_SESSION['wpsqt'][$quizName]['details']['id'],
 							   		 $personName,$_SERVER['REMOTE_ADDR'],$correctAnswers,$totalPoints,$percentRight,$status,$pass ) )
